@@ -1,25 +1,36 @@
-# Add Directional Animations
+# Directional Animations
 
-## Make Movement Feel Real! @showdialog
+## Make movement feel real! @showdialog
 
-Right now your character walks — but they always face the same direction!
+Right now your character walks — but always faces the same direction even when moving left!
 
-In this tutorial you will use **controller button events** to swap animations when the player moves left, and restore the default when they stop.
+In this tutorial you will use **controller button events** to swap animations based on direction.
 
-## How button events work @showdialog
+## Step 1: Understand button events
 
-There are two types of button events:
+Go to ``||controller:Controller||`` — you will see event blocks for each button direction.
 
-- **Pressed** → fires the moment you press the button
-- **Released** → fires the moment you let go
+There are two types:
+- **Pressed** → fires the instant you push the button
+- **Released** → fires the instant you let go
 
-We use **Pressed** to start the left-facing walk, and **Released** to go back to normal.
+The plan: **Left Pressed** → swap to left-facing animation. **Left Released** → restore default.
 
-## Step 1: Add the left-press event
+Try it with a test splash first:
 
-Go to ``||controller:Controller||`` and find the **on left button pressed** block. Drag it to your workspace.
+```blocks
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    game.splash("Going left!")
+})
+```
 
-Inside it, add an **animate** block with your left-facing frames:
+Press **Play** ▶️ and tap the left arrow. You will see the splash the instant you press! Delete it when done.
+
+## Step 2: Add the left-facing animation
+
+Replace the test splash with a real **animate sprite** block using your left-facing frames.
+
+Then add an **on left released** block that restores the default right-facing animation:
 
 ```blocks
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -28,15 +39,26 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
         [img`
         . . . f f f f f . . . . 
         . . f e e e e e f f . . 
-        . f e e e e e e e f f . 
-        f e e e e e e e f f f f 
         f e e 4 e e e f f f f f 
         f f e 4 4 4 4 4 f f f f 
         f f e 4 4 f f 4 e 4 f f 
-        . f f d d d d 4 d 4 f . 
-        . . f b b d d 4 f f f . 
         . . f 1 1 1 e d d 4 . . 
         . . f 6 6 6 f e e f . . 
+        . . . f f f f f f . . . 
+        `],
+        500,
+        true
+    )
+})
+controller.left.onEvent(ControllerButtonEvent.Released, function () {
+    animation.runImageAnimation(
+        mySprite,
+        [img`
+        . . . . f f f f . . . . 
+        f 4 e 4 4 4 4 4 4 e 4 f 
+        f 4 4 f f 4 4 f f 4 4 f 
+        4 4 f 6 6 6 6 6 6 f 4 4 
+        . . . f f f f f f . . . 
         `],
         500,
         true
@@ -45,14 +67,12 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 ```
 
 ~hint Where are the left-facing frames? 💡
-The left-facing frames are a mirror of the right-facing ones. Open your sprite editor and flip the image horizontally, or draw new frames facing left!
+Open the sprite editor and flip your walking frames **horizontally** — or look in My Assets for the left-walk frames!
 hint~
 
-## Step 2: Restore the animation on right release
+## Step 3: Restore default on right release too
 
-When the player **releases** the right button, swap back to the default walking animation.
-
-Find the **on right button released** block from ``||controller:Controller||``:
+Add one more block — **on right released** — that also restores the default animation. This makes sure the character always snaps back to right-facing when not moving left:
 
 ```blocks
 controller.right.onEvent(ControllerButtonEvent.Released, function () {
@@ -60,12 +80,10 @@ controller.right.onEvent(ControllerButtonEvent.Released, function () {
         mySprite,
         [img`
         . . . . f f f f . . . . 
-        . . f f e e e e f f . . 
-        . f f e e e e e e f f . 
-        f f f f 4 e e e f f f f 
         f 4 e 4 4 4 4 4 4 e 4 f 
         f 4 4 f f 4 4 f f 4 4 f 
         4 4 f 6 6 6 6 6 6 f 4 4 
+        . . . f f f f f f . . . 
         `],
         500,
         true
@@ -73,18 +91,12 @@ controller.right.onEvent(ControllerButtonEvent.Released, function () {
 })
 ```
 
-## Step 3: Test it!
-
-Press the **Play** button and try walking left and right. Does your character face the right direction?
-
-~hint Challenge! 🌟
-Can you also add an **on up button pressed** event that makes the character jump or wave? Try adding a different animation frame set!
-hint~
+Test all directions — left faces left ⬅️, right faces right ➡️, releasing snaps back correctly!
 
 ## Done! @showdialog
 
-Your character now faces the right way when moving! 🎮
+Your character now moves and faces the right way every time! 🎮
 
-You have finished **Path 1 — Setting Up the Game World**!
+**Path 1 — Setting Up the Game World is COMPLETE!** 🎉
 
-Head over to **Path 2** to start building the Sahur food-collecting scene! 🌙
+Head to **Path 2** to build the Sahur food-collecting scene! 🌙🍱

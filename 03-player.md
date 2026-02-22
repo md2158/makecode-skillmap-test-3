@@ -1,17 +1,16 @@
-# Animate Your Player Character
+# Animate the Player Character
 
-## Bring Your Character to Life! @showdialog
+## Bring your hero to life! @showdialog
 
-Time to add the **player** — a boy sprite who walks around collecting food and coins!
+Time to add the **player** — a boy sprite who walks around collecting food and coins! 🚶
 
-You will learn how to:
-- Create a player sprite
-- Move it with the controller
-- Run a walking animation
+In this tutorial you will create the sprite, enable movement, and add a walking animation.
 
-## Step 1: Create the player sprite
+## Step 1: Create and move the player
 
-Inside ``||loops:on start||``, add a block to create your player sprite and set it as **Player** kind.
+Inside ``||loops:on start||``, create the player sprite using your **Boy-standing** asset and set Kind to **Player**.
+
+Then hook it up to the controller, set the starting position on the left, and lock it to the screen:
 
 ```blocks
 let mySprite = sprites.create(img`
@@ -32,48 +31,48 @@ let mySprite = sprites.create(img`
     . . . f f f f f f . . . 
     . . . f f . . f f . . . 
     `, SpriteKind.Player)
-```
-
-## Step 2: Move with the controller
-
-Add the **move mySprite with buttons** block from ``||controller:Controller||``. This lets the player walk with arrow keys or D-pad!
-
-```blocks
 controller.moveSprite(mySprite)
-```
-
-## Step 3: Set starting position and size
-
-Place the player on the left side of the screen. Scale it up so it looks bigger and clearer.
-
-```blocks
 mySprite.setPosition(20, 101)
-mySprite.setScale(2, ScaleAnchor.Middle)
-```
-
-## Step 4: Keep the player on screen
-
-Add the **stay in screen** block so the player cannot walk off the edge!
-
-```blocks
 mySprite.setStayInScreen(true)
 ```
 
-## Step 5: Add a walking animation
+## Step 2: Scale up the player
 
-Go to ``||animation:Animation||`` in the toolbox. Drag out the **animate** block.
+The sprite is small by default. Scale it up to **2×** so it stands out clearly on screen:
 
-Click the animation frames box to add your walking frames one by one.
+```blocks
+mySprite.setScale(2, ScaleAnchor.Middle)
+```
+
+Find **set mySprite scale** in ``||sprites:Sprites||``. Set the number to **2** and anchor to **Middle**.
+
+~hint What does ScaleAnchor.Middle do? 💡
+It scales the sprite from its **center point** outward — so it grows evenly in all directions and stays in the same screen position!
+hint~
+
+## Step 3: Add the walking animation
+
+Go to ``||animation:Animation||`` and drag out the **animate sprite** block.
+
+Click the **+** to add 3 walking frames from your My Assets. Set interval to **500ms** and loop to **true**:
 
 ```blocks
 animation.runImageAnimation(
     mySprite,
     [img`
     . . . . f f f f . . . . 
-    . . f f e e e e f f . . 
-    . f f e e e e e e f f . 
-    f f f f 4 e e e f f f f 
-    f f f 4 4 4 e e f f f f 
+    f 4 e 4 4 4 4 4 4 e 4 f 
+    f 4 4 f f 4 4 f f 4 4 f 
+    4 4 f 6 6 6 6 6 6 f 4 4 
+    . . . f f f f f f . . . 
+    `, img`
+    . . . . f f f f . . . . 
+    f 4 e 4 4 4 4 4 4 e 4 f 
+    f e 4 d d d d d d 4 e f 
+    4 4 f 6 6 6 6 6 6 f 4 4 
+    . . . f f . . f f . . . 
+    `, img`
+    . . . . f f f f . . . . 
     f 4 e 4 4 4 4 4 4 e 4 f 
     f 4 4 f f 4 4 f f 4 4 f 
     4 4 f 6 6 6 6 6 6 f 4 4 
@@ -84,12 +83,10 @@ animation.runImageAnimation(
 )
 ```
 
-~hint What does 500 mean? 💡
-**500** is the time in milliseconds between each animation frame. Try **200** for a faster walk, or **800** for a slow shuffle!
-hint~
+Press **Play** ▶️ — your character should walk with animation and stop at screen edges!
 
 ## Done! @showdialog
 
-Your player is walking! 🚶
+Your player is alive and walking! 🎉🚶
 
-Next tutorial — making the character face left when moving left!
+Next up — making the character **face left** when moving left!

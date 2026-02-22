@@ -1,47 +1,73 @@
-# Create Custom Sprite Kinds
+# Custom Sprite Kinds
 
-## Welcome! @showdialog
+## Welcome to the Ramadan Game! @showdialog
 
-In this tutorial, you will learn how to create **custom Sprite Kinds** for the Ramadan game.
+Selamat datang! 🌙
 
-Sprite Kinds help the game tell different sprites apart — like the player, coins, food, and trees!
+In this tutorial you will add **custom Sprite Kinds** — special labels that help the game tell different objects apart, like coins, food, trees, and gates.
 
-## What are Sprite Kinds? @showdialog
+## Step 1: What are Sprite Kinds?
 
-MakeCode Arcade already has kinds like **Player**, **Enemy**, and **Food**.
+Every sprite needs a **Kind**. MakeCode Arcade has built-in kinds like Player, Enemy, and Food — but our Ramadan game needs its own!
 
-But our Ramadan game needs more kinds:
-- 🎋 **Decoration** — banners and background art
-- 🚪 **StartGate** — the banner the player walks into
-- ✨ **FinishSahur** — the Next button that appears when done
-- 🌳 **Trees** — decorative trees
-- 🪙 **Coin** — Pahala reward coins
+Click on any **create sprite** block, open the **Kind** dropdown, scroll to the bottom and click **"Add a new kind..."**
 
-## Step 1: Open the Sprite Kind menu
-
-Click on ``||sprites:Sprites||`` in the toolbox.
-
-Scroll down and find **"Set sprite kind"** blocks — these let you pick which kind a sprite is.
-
-## Step 2: See the kinds in action
-
-Every time you create a sprite, you choose its kind. Like this:
+Add these 5 kinds one by one:
+- **Decoration** — the Ramadan Kareem banner
+- **StartGate** — the banner the player walks into
+- **FinishSahur** — the Next button that appears when done
+- **Trees** — decorative trees in the scene
+- **Coin** — Pahala reward coins
 
 ```blocks
-let mySprite = sprites.create(img`
+let test = sprites.create(img`
     . . . . . . . . 
     . . . . . . . . 
-    `, SpriteKind.Player)
+    `, SpriteKind.Decoration)
 ```
 
-## Step 3: Try it yourself!
+## Step 2: Why kinds matter — overlaps
 
-Drag out a ``||sprites:set mySprite to sprite of kind Player||`` block from the Sprites toolbox.
+Kinds are what make **overlap events** work. The game checks which kinds touched and fires the right event.
 
-Click the **Player** dropdown — you can see all the built-in kinds. In later steps you will add your own!
+Drag out an **on sprite overlaps** block from ``||sprites:Sprites||``. Notice the two Kind dropdowns — your custom kinds now appear in both!
 
-## Great work! @showdialog
+```blocks
+sprites.onOverlap(SpriteKind.Player, SpriteKind.StartGate, function (sprite, otherSprite) {
+    game.splash("Gate touched!")
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Coin, function (sprite, otherSprite) {
+    game.splash("Coin collected!")
+})
+```
 
-You now understand Sprite Kinds! 🌙
+~hint Why not just use Food for everything? 💡
+If coins and food were both **Food** kind, the game couldn't tell them apart — collecting a coin would trigger the food event too! Separate kinds give each object its own identity.
+hint~
 
-In the next tutorial you will use these kinds to build the **intro screen**.
+## Step 3: Confirm and clean up
+
+Delete the test sprites and overlap blocks — these were just to check everything works.
+
+Check your Kind dropdown on any sprite block. You should see all 5 custom kinds listed alongside the built-in ones:
+
+```blocks
+let a = sprites.create(img`
+    . . . . . . . .
+    . . . . . . . .
+    `, SpriteKind.Decoration)
+let b = sprites.create(img`
+    . . . . . . . .
+    . . . . . . . .
+    `, SpriteKind.StartGate)
+let c = sprites.create(img`
+    . . . . . . . .
+    . . . . . . . .
+    `, SpriteKind.FinishSahur)
+```
+
+## Done! @showdialog
+
+All 5 custom Sprite Kinds are ready! 🎉
+
+Next up — building the **Intro Screen** with the Ramadan Kareem banner and Start Gate!

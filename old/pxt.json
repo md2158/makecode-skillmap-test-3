@@ -10,10 +10,10 @@
         "02-intro.md",
         "03-player.md",
         "04-directional.md",
-        "05-sahur.md",
-        "06-food.md",
-        "07-coins.md",
-        "08-finish.md"
+        "05-sahur-scene.md",
+        "06-food-collect.md",
+        "07-pahala-coins.md",
+        "08-next-button.md"
     ],
     "preferredEditor": "tsprj"
 }
