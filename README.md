@@ -1,61 +1,70 @@
-# Ramadan Game — MakeCode Arcade Skillmap
+# MakeCode Skill Map Sample
 
-A MakeCode Arcade skillmap that teaches students how to build a Ramadan-themed arcade game step by step, through 8 guided tutorials split across 2 learning paths.
+This is an example skill map that contains three separate learning paths.You can view the content here:
+https://arcade.makecode.com/skillmap#github:microsoft/pxt-skillmap-sample/skillmap.md
 
-## Preview the Skillmap
+Github-hosted skill maps are loaded in the same manner as tutorials, with a URL fragment
+formatted as follows:
 
-Once hosted on GitHub, you can open it in MakeCode Arcade with this URL:
+`#github:[organization name]/[repository name]/[markdown file name]`
 
-```
-https://arcade.makecode.com/skillmap#github:YOUR_USERNAME/YOUR_REPO/skillmap
-```
+## Syntax
 
-Replace `YOUR_USERNAME` and `YOUR_REPO` with your actual GitHub username and repository name.
+The skill map definition can be found in the `skillmap.md` file. Metadata about the skill
+map itself can be found under the top-level heading:
 
-## Learning Paths
+- `id`: The string after the heading (eg `# sample`). Cannot contain spaces.
+- `name`: The title of your skill map. This will be displayed in the banner on the page.
+- `description`: A description of the map contents. This is also shown in the banner.
+- `infoUrl` (optional): A URL to a page with additional educator information
 
-### Path 1 — Setting Up the Game World
-1. **Create Custom Sprite Kinds** — Define the SpriteKind types used throughout the game
-2. **Build the Intro Screen** — Set up the opening scene with the Ramadan Kareem banner
-3. **Animate Your Player Character** — Add a walking boy sprite with multi-frame animation
-4. **Add Directional Animations** — Swap animations based on controller direction
+### Learning Paths
 
-### Path 2 — Game Phases & Collectibles
-5. **Build the Sahur Scene** — Set the outdoor background and place decorative trees
-6. **Spawn & Collect Sahur Foods** — Randomly spawn food items and handle collection
-7. **Spawn Pahala Coins** — Use a timed loop to drip-feed collectible coins
-8. **Unlock the Next Button & Game Flow** — Wire all phases into a complete game loop
+A skill map consists of one or more "paths", each path being an ordered sequence of activities.
+The first activity in each path is unlocked, and completing an activity unlocks the next one.
 
-## File Structure
+A learning path is defined by a level two heading (`##`) has has the following properties:
 
-```
-skillmap.md              ← Main skillmap definition
-pxt.json                 ← MakeCode project metadata
-tutorials/
-  01-spritekinds.md
-  02-intro.md
-  03-player.md
-  04-directional.md
-  05-sahur-scene.md
-  06-food-collect.md
-  07-pahala-coins.md
-  08-next-button.md
-```
+- `id`: The string after the heading (eg `## interface`). Must be unique within this skill map.
+- `name`: The title of the path, displayed above the linked activities.
+- `description`: Additional details (not currently displayed).
+- `completionUrl`: URL to a certificate, displayed when a user has completed the entire path.
 
-## Setup Instructions
+### Activities
 
-1. **Fork or clone** this repository to your own GitHub account
-2. **Replace** all instances of `YOUR_USERNAME/YOUR_REPO` in `skillmap.md` with your actual repo path
-3. **Add your image assets** — the tutorials reference assets like `Ramadan Greeting Text`, `Start Banner`, `Sahur Background`, `Boy-standing`, `NextButtonIcon`, and `myAnim1`. These come from your MakeCode Arcade project's asset store.
-4. **Push to GitHub** and open the skillmap URL in MakeCode Arcade
+Each learning path has multiple activities, defined by level three headings (`###`). Currently,
+an "activity" is simply a MakeCode tutorial, and has the following properties:
 
-## Target Audience
+- `id`: The string after the heading (eg `### space-activity1`). Must be unique within this skill map.
+- `name`: The title of the activity. Displayed on the activity card.
+- `type`: The type of activity. Must be `tutorial` currently.
+- `description`: Details about the activity, displayed on the back of the card.
+- `tags`: Descriptive tags displayed on the bottom of the activity card.
+- `url`: Link to the tutorial. See the [MakeCode Tutorial Documentation](https://makecode.com/writing-docs/user-tutorials) for details on tutorial authoring and link formatting.
+- `imageUrl`: URL for the image displayed on the front of the activity card.
 
-- **Level:** Intermediate
-- **Platform:** MakeCode Arcade
-- **Language:** TypeScript / JavaScript
-- **Theme:** Ramadan (educational, cultural)
+## Forking
 
-## License
+If you fork this repo, be sure to change all URL references to https://github.com/microsoft/pxt-skillmap-sample to your forked repo's URL. Otherwise you won't see your changes.
 
-MIT
+## Contributing
+
+This project welcomes contributions and suggestions.  Most contributions require you to agree to a
+Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
+the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+
+When you submit a pull request, a CLA bot will automatically determine whether you need to provide
+a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
+provided by the bot. You will only need to do this once across all repos using our CLA.
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
+contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+## Trademarks
+
+This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft
+trademarks or logos is subject to and must follow
+[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
+Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
+Any use of third-party trademarks or logos are subject to those third-party's policies.

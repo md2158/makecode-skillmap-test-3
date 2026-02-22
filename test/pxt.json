@@ -1,0 +1,19 @@
+{
+  "name": "Ramadan Game Skillmap",
+  "description": "MakeCode Arcade skillmap for building a Ramadan-themed game.",
+  "dependencies": {
+    "device": "*"
+  },
+  "files": [
+    "skillmap.md",
+    "01-spritekinds.md",
+    "02-intro.md",
+    "03-player.md",
+    "04-directional.md",
+    "05-sahur-scene.md",
+    "06-food-collect.md",
+    "07-pahala-coins.md",
+    "08-next-button.md"
+  ],
+  "preferredEditor": "tsprj"
+}
